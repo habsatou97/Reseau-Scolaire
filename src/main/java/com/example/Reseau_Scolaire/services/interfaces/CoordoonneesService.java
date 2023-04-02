@@ -6,6 +6,7 @@ import java.util.List;
 
 public interface CoordoonneesService {
     public List<Coordonnees> get();
+    public Coordonnees getById(Long id);
     public Coordonnees create(Coordonnees coordonnees);
     public Coordonnees update(Long id,Coordonnees coordonnees) throws Exception;
     public boolean delete(Long id) throws Exception;

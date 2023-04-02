@@ -20,18 +20,27 @@ public class CoordonneesController {
 
     @GetMapping
     public ResponseEntity<List<Coordonnees>> getAll(){
+        System.out.println("########################################");
         return ResponseEntity.ok(coordonneesService.get());
+    }
+    @GetMapping(value = "{id}")
+    public ResponseEntity<Coordonnees> getById(@PathVariable Long id){
+        System.out.println("########################################");
+        return ResponseEntity.ok(coordonneesService.getById(id));
     }
     @PostMapping
     public ResponseEntity<Coordonnees> create(@RequestBody Coordonnees coordonnees){
+        System.out.println("########################################");
         return  ResponseEntity.ok(coordonneesService.create(coordonnees));
     }
     @RequestMapping(value = "{id}",method = RequestMethod.PUT)
     public ResponseEntity<Coordonnees> update(@RequestBody Coordonnees coordonnees,@PathVariable Long id) throws Exception {
+        System.out.println("########################################");
         return ResponseEntity.ok(coordonneesService.update(id,coordonnees));
     }
     @RequestMapping(value = "{id}",method = RequestMethod.DELETE)
     public boolean delete(@PathVariable Long id) throws Exception {
+        System.out.println("########################################");
         return coordonneesService.delete(id);
     }
 }

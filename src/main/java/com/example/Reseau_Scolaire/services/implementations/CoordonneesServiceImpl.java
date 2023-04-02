@@ -3,6 +3,7 @@ package com.example.Reseau_Scolaire.services.implementations;
 import com.example.Reseau_Scolaire.models.Coordonnees;
 import com.example.Reseau_Scolaire.repositories.CoordonneesRepository;
 import com.example.Reseau_Scolaire.services.interfaces.CoordoonneesService;
+import jakarta.transaction.Transactional;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,6 +15,7 @@ import java.util.Optional;
 
 @Service
 @Data
+@Transactional
 @Builder
 public class CoordonneesServiceImpl implements CoordoonneesService {
     private final CoordonneesRepository coordonneesRepository;
@@ -24,12 +26,27 @@ public class CoordonneesServiceImpl implements CoordoonneesService {
     }
 
     @Override
+    public Coordonnees getById(Long id) {
+        Optional<Coordonnees> existingcoordonnees=coordonneesRepository.findById(id);
+        if(existingcoordonnees.isPresent()){
+            return  existingcoordonnees.get();
+        }
+        throw new IllegalArgumentException("Des coordonnees avec cet Id n'exsitent pas");
+    }
+
+    @Override
     public Coordonnees create(Coordonnees coordonnees) {
-        Coordonnees coordonnees1=new Coordonnees();
-        coordonnees1.setAdresse(coordonnees.getAdresse());
-        coordonnees1.setNumeroTelephone(coordonnees.getNumeroTelephone());
-        coordonnees1.setSiteInternet(coordonnees.getSiteInternet());
-        return coordonneesRepository.save(coordonnees1);
+        System.out.println("########################################");
+        if(coordonnees.getAdresse()==null || coordonnees.getNumeroTelephone()==null)
+            throw new IllegalArgumentException("L'adresse ou le numero de telephone ne pevent etre nuls");
+        else
+            return coordonneesRepository.saveAndFlush(coordonnees);
+
+//        Coordonnees coordonnees1=new Coordonnees();
+//        coordonnees1.setAdresse(coordonnees.getAdresse());
+//        coordonnees1.setNumeroTelephone(coordonnees.getNumeroTelephone());
+//        coordonnees1.setSiteInternet(coordonnees.getSiteInternet());
+//        return coordonneesRepository.save(coordonnees1);
     }
 
     @Override
