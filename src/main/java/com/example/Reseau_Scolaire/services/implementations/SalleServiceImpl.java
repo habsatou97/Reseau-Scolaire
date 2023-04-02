@@ -10,6 +10,8 @@ import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
+
 @Service
 @Builder
 @Data
@@ -30,7 +32,11 @@ public class SalleServiceImpl implements SalleService {
 
     @Override
     public Salle getSalleById(Long id) {
-        return null;
+        Optional<Salle> existingSalle=salleRepository.findById(id);
+        if(existingSalle.isPresent())
+            return existingSalle.get();
+        else
+            throw new IllegalArgumentException("Une salle avec cet id n'existe pas!!!");
     }
 
     @Override
