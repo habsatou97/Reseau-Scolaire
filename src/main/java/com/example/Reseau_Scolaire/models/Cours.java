@@ -37,4 +37,11 @@ public class Cours {
     @ManyToOne
     @JoinColumn(name = "matiere_id",referencedColumnName = "id")
     private Matiere matiere;
+
+    public void addEtablissement(Etablissement etablissement){
+        this.etablissements.add(etablissement);
+    }
+    public void addEleve(Eleve eleve){
+        this.eleves.add(eleve);
+    }
 }

@@ -41,4 +41,17 @@ public class Etablissement {
     private List<Salle> salles=new ArrayList<>();
     @ManyToMany(mappedBy = "etablissements")
     private List<Cours>cours=new ArrayList<>();
+
+    public void addCours(Cours cours){
+        this.cours.add(cours);
+    }
+    public void addEleve(Eleve eleve){
+        this.eleves.add(eleve);
+    }
+    public void addEnseignant(Enseignant enseignant){
+        this.enseignants.add(enseignant);
+    }
+    public  void addSalle(Salle salle){
+        this.salles.add(salle);
+    }
 }

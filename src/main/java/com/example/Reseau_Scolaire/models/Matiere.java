@@ -23,5 +23,12 @@ public class Matiere {
     @OneToMany(mappedBy = "matiere")
     private List<Cours> cours=new ArrayList<>();
 
+    public void addNote(Note note){
+        this.notes.add(note);
+    }
+    public void addCours(Cours cours){
+        this.cours.add(cours);
+    }
+
 
 }

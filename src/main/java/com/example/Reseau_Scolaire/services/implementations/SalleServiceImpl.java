@@ -45,7 +45,7 @@ public class SalleServiceImpl implements SalleService {
         if(existingSalle.isPresent()){
             Salle salle1=existingSalle.get();
             if(salle.getCapaciteAccueil()==null)
-                throw new IllegalArgumentException("Le corpsde la requete ne peut pas etre vide");
+                throw new IllegalArgumentException("Le corps de la requete ne peut pas etre vide");
             else
             salle1.setCapaciteAccueil(salle.getCapaciteAccueil());
             return salleRepository.save(salle1);

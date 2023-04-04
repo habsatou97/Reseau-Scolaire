@@ -34,4 +34,8 @@ public class Enseignant {
     @JoinColumn(name ="cours_id" ,referencedColumnName = "id")
     private List<Cours> cours=new ArrayList<>();
 
+    public void addCours(Cours cours){
+        this.cours.add(cours);
+    }
+
 }

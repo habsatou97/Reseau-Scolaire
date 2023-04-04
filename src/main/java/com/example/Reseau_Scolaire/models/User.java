@@ -6,6 +6,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -21,7 +23,11 @@ public class User {
     private String nom;
     @Column(name = "numerotelephone",nullable = false,length = 9,unique = true)
     private String numeroTelephone;
-    private Role role;
+    private List<Role> roles;
     @Column(name = "email",nullable = false,unique = true)
     private String email;
+
+    public void addRole(Role role){
+        this.roles.add(role);
+    }
 }

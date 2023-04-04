@@ -33,4 +33,11 @@ public class Eleve {
     private List<Cours> cours=new ArrayList<>();
     @OneToMany(mappedBy = "eleve",fetch = FetchType.EAGER,orphanRemoval = true)
     private List<Note> notes=new ArrayList<>();
+
+    public void addCours(Cours cours){
+        this.cours.add(cours);
+    }
+    public void addNote(Note note){
+        this.notes.add(note);
+    }
 }
