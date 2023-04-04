@@ -21,7 +21,7 @@ public class SalleServiceImpl implements SalleService {
     @Override
     public Salle create(Salle salle) {
         Salle salle1=new Salle();
-        salle1.setCapaciteAccueil(50);
+        salle1.setCapaciteAccueil(salle.getCapaciteAccueil());
         return (salleRepository.save(salle1));
     }
 
@@ -41,11 +41,27 @@ public class SalleServiceImpl implements SalleService {
 
     @Override
     public Salle update(Long id, Salle salle) {
-        return null;
+        Optional<Salle> existingSalle=salleRepository.findById(id);
+        if(existingSalle.isPresent()){
+            Salle salle1=existingSalle.get();
+            if(salle.getCapaciteAccueil()==null)
+                throw new IllegalArgumentException("Le corpsde la requete ne peut pas etre vide");
+            else
+            salle1.setCapaciteAccueil(salle.getCapaciteAccueil());
+            return salleRepository.save(salle1);
+        }
+        else
+            throw new IllegalArgumentException("Une salle avec cet id n'existe pas!!!");
     }
 
     @Override
     public boolean delete(Long id) {
-        return false;
+        Optional<Salle> existingSalle=salleRepository.findById(id);
+        if(existingSalle.isPresent()){
+            salleRepository.deleteById(id);
+            return true;
+        }
+        else
+            return false;
     }
 }
