@@ -14,6 +14,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
+//@CrossOrigin(origins = "http://localhost:8080")
 @RequestMapping("/api/reseauScolaire/v1/coordonnees/")
 public class CoordonneesController {
     @Autowired
